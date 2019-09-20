@@ -1,5 +1,9 @@
 PRODUCT_BRAND ?= PixelExperience
 
+include vendor/aosp/config/ProductConfigQcom.mk
+
+PRODUCT_SOONG_NAMESPACES += $(PATHMAP_SOONG_NAMESPACES)
+
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
 ifeq ($(PRODUCT_GMS_CLIENTID_BASE),)

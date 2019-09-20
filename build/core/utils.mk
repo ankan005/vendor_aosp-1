@@ -86,26 +86,26 @@ endif # get-vendor-board-platforms
 # $(call is-board-platform,bp)
 # returns true or empty
 define is-board-platform
-$(call match-word,$(1),$(TARGET_BOARD_PLATFORM))
+$(call match-word,$(1),$(PRODUCT_BOARD_PLATFORM))
 endef
 
 # $(call is-not-board-platform,bp)
 # returns true or empty
 define is-not-board-platform
-$(if $(call match-word,$(1),$(TARGET_BOARD_PLATFORM)),,true)
+$(if $(call match-word,$(1),$(PRODUCT_BOARD_PLATFORM)),,true)
 endef
 
 # $(call is-board-platform-in-list,bpl)
 # returns true or empty
 define is-board-platform-in-list
-$(call match-word-in-list,$(TARGET_BOARD_PLATFORM),$(1))
+$(call match-word-in-list,$(PRODUCT_BOARD_PLATFORM),$(1))
 endef
 
 # $(call is-vendor-board-platform,vendor)
 # returns true or empty
 define is-vendor-board-platform
 $(strip \
-  $(call match-word-in-list,$(TARGET_BOARD_PLATFORM),\
+  $(call match-word-in-list,$(PRODUCT_BOARD_PLATFORM),\
     $(call get-vendor-board-platforms,$(1)) \
   ) \
 )
@@ -117,7 +117,7 @@ endef
 #
 # returns true or empty
 define is-chipset-in-board-platform
-$(call match-prefix,$(1),$(underscore),$(TARGET_BOARD_PLATFORM))
+$(call match-prefix,$(1),$(underscore),$(PRODUCT_BOARD_PLATFORM))
 endef
 
 # $(call is-chipset-prefix-in-board-platform,prefix)
@@ -135,8 +135,8 @@ $(strip \
   $(eval delim_a := $(empty)a$(empty)) \
   $(if \
     $(or \
-      $(call match-prefix,$(1),$(delim_a),$(TARGET_BOARD_PLATFORM)), \
-      $(call match-prefix,$(1),$(underscore),$(TARGET_BOARD_PLATFORM)), \
+      $(call match-prefix,$(1),$(delim_a),$(PRODUCT_BOARD_PLATFORM)), \
+      $(call match-prefix,$(1),$(underscore),$(PRODUCT_BOARD_PLATFORM)), \
     ), \
     true, \
   ) \
